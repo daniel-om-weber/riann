@@ -1,5 +1,36 @@
-# nbdev template
+# RIANN (Robust IMU-based Attitude Neural Network) 
+> Summary description here.
 
-Use this template to more easily create your [nbdev](https://nbdev.fast.ai/) project.
 
-_If you are using an older version of this template, and want to upgrade to the theme-based version, see [this helper script](https://gist.github.com/hamelsmu/977e82a23dcd8dcff9058079cb4a8f18) (more explanation of what this means is contained in the link to the script)_.
+This file will become your README and also the index of your documentation.
+
+## Install
+
+`pip install .`
+
+## How to use
+
+```python
+import numpy as np
+##prepare dummy imu signals
+sequence_length=100
+signal_shape = (sequence_length,3)
+
+acc = np.ones(signal_shape)
+gyr = np.zeros(signal_shape)
+fs = 200
+```
+
+```python
+from riann.riann import RIANN
+riann = RIANN()
+attitude = riann.predict(acc,gyr,fs)
+attitude.shape
+```
+
+
+
+
+    (100, 4)
+
+

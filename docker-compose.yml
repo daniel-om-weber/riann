@@ -29,7 +29,8 @@ services:
     ports:
      - "4000:4000"
     command: >
-     bash -c "pip install .
+     bash -c "cp -r docs_src docs
+     && pip install .
      && nbdev_build_docs && cd docs
      && bundle i
      && chmod -R u+rwx . && bundle exec jekyll serve --host 0.0.0.0"
