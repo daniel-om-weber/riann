@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "RIANN (Robust IMU-based Attitude Neural Network)",
     "section": "",
-    "text": "#hide\nfrom riann.riann import *",
+    "text": "RIANN is a lightweight neural network implementation for estimating orientation (attitude) from inertial measurement unit (IMU) data. It processes accelerometer and gyroscope readings to provide quaternion-based attitude estimation, optimized for real-time applications.",
     "crumbs": [
       "RIANN (Robust IMU-based Attitude Neural Network)"
     ]
@@ -13,8 +13,8 @@
     "objectID": "index.html#what-is-riann",
     "href": "index.html#what-is-riann",
     "title": "RIANN (Robust IMU-based Attitude Neural Network)",
-    "section": "What is RIANN?",
-    "text": "What is RIANN?\nRIANN is a lightweight neural network implementation for estimating orientation (attitude) from inertial measurement unit (IMU) data. It processes accelerometer and gyroscope readings to provide quaternion-based attitude estimation, optimized for real-time applications.",
+    "section": "",
+    "text": "RIANN is a lightweight neural network implementation for estimating orientation (attitude) from inertial measurement unit (IMU) data. It processes accelerometer and gyroscope readings to provide quaternion-based attitude estimation, optimized for real-time applications.",
     "crumbs": [
       "RIANN (Robust IMU-based Attitude Neural Network)"
     ]
@@ -34,7 +34,17 @@
     "href": "index.html#installation",
     "title": "RIANN (Robust IMU-based Attitude Neural Network)",
     "section": "Installation",
-    "text": "Installation\npip install riann\n\nor from source\n\n```bash\ngit clone https://github.com/daniel-om-weber/riann.git\ncd riann\npip install -e .\n\n## Quickstart\n\n::: {#cell-10 .cell}\n``` {.python .cell-code}\nimport numpy as np\nfrom riann.riann import RIANN\n\n# Initialize RIANN\nriann = RIANN()\n\n# Prepare IMU data\nacc = np.ones((100, 3))  # Accelerometer data (100 samples, XYZ axes)\ngyr = np.zeros((100, 3)) # Gyroscope data (100 samples, XYZ axes)\nfs = 200                 # Sampling rate in Hz\n\n# Get attitude quaternions\nattitude = riann.predict(acc, gyr, fs)\nprint(f\"Output shape: {attitude.shape}\")  # (100, 4) - 100 quaternions\n\nOutput shape: (100, 4)\n\n:::",
+    "text": "Installation\npip install riann\nor from source\ngit clone https://github.com/daniel-om-weber/riann.git\ncd riann\npip install -e .",
+    "crumbs": [
+      "RIANN (Robust IMU-based Attitude Neural Network)"
+    ]
+  },
+  {
+    "objectID": "index.html#quickstart",
+    "href": "index.html#quickstart",
+    "title": "RIANN (Robust IMU-based Attitude Neural Network)",
+    "section": "Quickstart",
+    "text": "Quickstart\n\nimport numpy as np\nfrom riann.riann import RIANN\n\n# Initialize RIANN\nriann = RIANN()\n\n# Prepare IMU data\nacc = np.ones((100, 3))  # Accelerometer data (100 samples, XYZ axes)\ngyr = np.zeros((100, 3)) # Gyroscope data (100 samples, XYZ axes)\nfs = 200                 # Sampling rate in Hz\n\n# Get attitude quaternions\nattitude = riann.predict(acc, gyr, fs)\nprint(f\"Output shape: {attitude.shape}\")  # (100, 4) - 100 quaternions\n\nOutput shape: (100, 4)",
     "crumbs": [
       "RIANN (Robust IMU-based Attitude Neural Network)"
     ]
