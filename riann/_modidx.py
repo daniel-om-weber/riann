@@ -3,7 +3,7 @@
 d = { 'settings': { 'branch': 'master',
                 'doc_baseurl': '/riann/',
                 'doc_host': 'https://daniel-om-weber.github.io',
-                'git_url': 'https://github.com/daniel-om-weber/riann/tree/master/',
+                'git_url': 'https://github.com/daniel-om-weber/riann',
                 'lib_path': 'riann'},
   'syms': { 'riann.riann': { 'riann.riann.RIANN': ('riann.html#riann', 'riann/riann.py'),
                              'riann.riann.RIANN.__init__': ('riann.html#riann.__init__', 'riann/riann.py'),
