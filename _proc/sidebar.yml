@@ -2,5 +2,4 @@ website:
   sidebar:
     contents:
       - index.ipynb
-      - RIANN_Example.ipynb
       - riann.ipynb

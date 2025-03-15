@@ -75,16 +75,6 @@
     "text": "Docs are automatically created from the notebooks in the nbs folder."
   },
   {
-    "objectID": "riann_example.html",
-    "href": "riann_example.html",
-    "title": "Application Example of RIANN on the BROAD Dataset",
-    "section": "",
-    "text": "import matplotlib.pyplot as plt\nimport numpy as np\n\nDownload the data of the BROAD dataset (https://doi.org/10.3390/data6070072). The notebook assumes, that the data_hdf5 Folder is inside of the working directory.\n\n#!wget https://depositonce.tu-berlin.de/bitstream/11303/13238/2/broad.zip\n#!unzip broad.zip\n\nLoad the reference orientation, accelerometer, gyroscope and sampling-rate values of a measurement.\n\n#!pip install h5py\nimport h5py\nwith h5py.File('data_hdf5/01_undisturbed_slow_rotation_A.hdf5','r') as f:\n    acc = f['imu_acc'][:]\n    gyr = f['imu_gyr'][:]\n    ref_quat = f['opt_quat'][:]\n    fs = f.attrs['sampling_rate']\n\nUse RIANN to estimate the attitude of the IMU\n\nfrom riann.riann import RIANN\nriann = RIANN()\nest_quat = riann.predict(acc,gyr,fs)\nest_quat.shape\n\n(56940, 4)\n\n\nDefine the attitude error metric for the final evaluation\n\ndef relativeQuat(q1, q2):\n    \"\"\"quat1*inv(quat2)\"\"\"\n\n    o1 =  q1[..., 0] * q2[..., 0] + q1[..., 1] * q2[..., 1] + q1[..., 2] * q2[..., 2] + q1[..., 3] * q2[..., 3]\n    o2 = -q1[..., 0] * q2[..., 1] + q1[..., 1] * q2[..., 0] - q1[..., 2] * q2[..., 3] + q1[..., 3] * q2[..., 2]\n    o3 = -q1[..., 0] * q2[..., 2] + q1[..., 1] * q2[..., 3] + q1[..., 2] * q2[..., 0] - q1[..., 3] * q2[..., 1]\n    o4 = -q1[..., 0] * q2[..., 3] - q1[..., 1] * q2[..., 2] + q1[..., 2] * q2[..., 1] + q1[..., 3] * q2[..., 0]\n\n    return np.stack([o1,o2,o3,o4],axis=-1)\n\ndef safe_acos_double(t,eps = 1e-16):\n    '''numericaly stable variant of arcuscosine, uses 64bit floats for internal computation for increased accuracy'''\n    return np.float32(np.arccos(np.clip(np.float64(t),-1.0 + eps, 1.0 - eps)))\n\ndef attitudeAngleDeg(q1,q2):\n    '''the attitude error between to quaternions in degree'''\n    q = relativeQuat(q1,q2)\n    \n    return 2*safe_acos_double(np.sqrt(q[..., 3]**2 + q[..., 0]**2))/np.pi*180\n\nPlot the attitude error of every time step\n\nplt.figure()\nx = np.linspace(0,ref_quat.shape[0]/fs,ref_quat.shape[0])\nplt.plot(x,attitudeAngleDeg(est_quat,ref_quat))\nplt.xlabel('time [s]')\nplt.ylabel('attitude error [°]')\n\nText(0, 0.5, 'attitude error [°]')",
-    "crumbs": [
-      "Application Example of RIANN on the BROAD Dataset"
-    ]
-  },
-  {
     "objectID": "riann.html",
     "href": "riann.html",
     "title": "riann",
