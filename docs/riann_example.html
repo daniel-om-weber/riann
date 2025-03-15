@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="An efficient neural network for real-time attitude estimation using IMU data.">
 
-<title>riann - RIANN (Robust IMU-based Attitude Neural Network)</title>
+<title>riann - Application Example of RIANN on the BROAD Dataset</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,11 +103,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="riann - RIANN (Robust IMU-based Attitude Neural Network)">
-<meta property="og:description" content="An efficient neural network for real-time attitude estimation using IMU data.">
+<meta property="og:title" content="riann - Application Example of RIANN on the BROAD Dataset">
+<meta property="og:description" content="A Neural Network for attitude estimation using IMU data">
 <meta property="og:site_name" content="riann">
-<meta name="twitter:title" content="riann - RIANN (Robust IMU-based Attitude Neural Network)">
-<meta name="twitter:description" content="An efficient neural network for real-time attitude estimation using IMU data.">
+<meta name="twitter:title" content="riann - Application Example of RIANN on the BROAD Dataset">
+<meta name="twitter:description" content="A Neural Network for attitude estimation using IMU data">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -133,7 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">RIANN (Robust IMU-based Attitude Neural Network)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./riann_example.html">Application Example of RIANN on the BROAD Dataset</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -147,13 +146,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">RIANN (Robust IMU-based Attitude Neural Network)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./riann_example.html" class="sidebar-item-text sidebar-link">
+  <a href="./riann_example.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Application Example of RIANN on the BROAD Dataset</span></a>
   </div>
 </li>
@@ -169,29 +168,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-is-riann" id="toc-what-is-riann" class="nav-link active" data-scroll-target="#what-is-riann">What is RIANN?</a></li>
-  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/daniel-om-weber/riann/tree/master/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">RIANN (Robust IMU-based Attitude Neural Network)</h1>
+<h1 class="title">Application Example of RIANN on the BROAD Dataset</h1>
 </div>
 
-<div>
-  <div class="description">
-    An efficient neural network for real-time attitude estimation using IMU data.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -207,60 +193,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<div id="cell-2" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#hide</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> riann.riann <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6048c24e-cfa5-426c-9437-448beda26b0e" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="what-is-riann" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-riann">What is RIANN?</h2>
-<p>RIANN is a lightweight neural network implementation for estimating orientation (attitude) from inertial measurement unit (IMU) data. It processes accelerometer and gyroscope readings to provide quaternion-based attitude estimation, optimized for real-time applications.</p>
-</section>
-<section id="key-features" class="level2">
-<h2 class="anchored" data-anchor-id="key-features">Key Features</h2>
-<ul>
-<li>Fast and accurate quaternion-based attitude estimation</li>
-<li>Optimized for real-time processing with state preservation</li>
-<li>Supports both batch processing and step-by-step integration</li>
-<li>Robust against sensor noise and motion artifacts</li>
-<li>Simple Python API with minimal dependencies</li>
-</ul>
-</section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install riann</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">or</span> from source</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">bash</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/daniel-om-weber/riann.git</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> riann</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">## Quickstart</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span> {#cell-10 .cell}</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span> {.python .cell-code}</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ex">import</span> numpy as np</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ex">from</span> riann.riann import RIANN</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize RIANN</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ex">riann</span> = RIANN<span class="er">(</span><span class="kw">)</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare IMU data</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ex">acc</span> = np.ones<span class="er">(</span><span class="kw">(</span><span class="ex">100,</span> 3<span class="kw">))</span>  <span class="co"># Accelerometer data (100 samples, XYZ axes)</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="ex">gyr</span> = np.zeros<span class="er">(</span><span class="kw">(</span><span class="ex">100,</span> 3<span class="kw">))</span> <span class="co"># Gyroscope data (100 samples, XYZ axes)</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ex">fs</span> = 200                 <span class="co"># Sampling rate in Hz</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Get attitude quaternions</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ex">attitude</span> = riann.predict<span class="er">(</span><span class="ex">acc,</span> gyr, fs<span class="kw">)</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ex">print</span><span class="er">(</span><span class="ex">f</span><span class="st">"Output shape: {attitude.shape}"</span><span class="kw">)</span>  <span class="co"># (100, 4) - 100 quaternions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Output shape: (100, 4)</code></pre>
+<p>Download the data of the BROAD dataset (https://doi.org/10.3390/data6070072). The notebook assumes, that the <code>data_hdf5</code> Folder is inside of the working directory.</p>
+<div id="a7bb4991-5985-477d-9a9c-1ad519a568e5" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!wget https://depositonce.tu-berlin.de/bitstream/11303/13238/2/broad.zip</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!unzip broad.zip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>:::</p>
+<p>Load the reference orientation, accelerometer, gyroscope and sampling-rate values of a measurement.</p>
+<div id="58336b4f-1502-48d6-b197-0bd430206726" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!pip install h5py</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> h5py</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> h5py.File(<span class="st">'data_hdf5/01_undisturbed_slow_rotation_A.hdf5'</span>,<span class="st">'r'</span>) <span class="im">as</span> f:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    acc <span class="op">=</span> f[<span class="st">'imu_acc'</span>][:]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    gyr <span class="op">=</span> f[<span class="st">'imu_gyr'</span>][:]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    ref_quat <span class="op">=</span> f[<span class="st">'opt_quat'</span>][:]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    fs <span class="op">=</span> f.attrs[<span class="st">'sampling_rate'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Use RIANN to estimate the attitude of the IMU</p>
+<div id="7fd4c458-3a95-480e-a5c9-86f18c2a9312" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> riann.riann <span class="im">import</span> RIANN</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>riann <span class="op">=</span> RIANN()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>est_quat <span class="op">=</span> riann.predict(acc,gyr,fs)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>est_quat.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>(56940, 4)</code></pre>
+</div>
+</div>
+<p>Define the attitude error metric for the final evaluation</p>
+<div id="0e8ca139-34d3-4f7a-a66d-e663e9e2c275" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relativeQuat(q1, q2):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""quat1*inv(quat2)"""</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    o1 <span class="op">=</span>  q1[..., <span class="dv">0</span>] <span class="op">*</span> q2[..., <span class="dv">0</span>] <span class="op">+</span> q1[..., <span class="dv">1</span>] <span class="op">*</span> q2[..., <span class="dv">1</span>] <span class="op">+</span> q1[..., <span class="dv">2</span>] <span class="op">*</span> q2[..., <span class="dv">2</span>] <span class="op">+</span> q1[..., <span class="dv">3</span>] <span class="op">*</span> q2[..., <span class="dv">3</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    o2 <span class="op">=</span> <span class="op">-</span>q1[..., <span class="dv">0</span>] <span class="op">*</span> q2[..., <span class="dv">1</span>] <span class="op">+</span> q1[..., <span class="dv">1</span>] <span class="op">*</span> q2[..., <span class="dv">0</span>] <span class="op">-</span> q1[..., <span class="dv">2</span>] <span class="op">*</span> q2[..., <span class="dv">3</span>] <span class="op">+</span> q1[..., <span class="dv">3</span>] <span class="op">*</span> q2[..., <span class="dv">2</span>]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    o3 <span class="op">=</span> <span class="op">-</span>q1[..., <span class="dv">0</span>] <span class="op">*</span> q2[..., <span class="dv">2</span>] <span class="op">+</span> q1[..., <span class="dv">1</span>] <span class="op">*</span> q2[..., <span class="dv">3</span>] <span class="op">+</span> q1[..., <span class="dv">2</span>] <span class="op">*</span> q2[..., <span class="dv">0</span>] <span class="op">-</span> q1[..., <span class="dv">3</span>] <span class="op">*</span> q2[..., <span class="dv">1</span>]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    o4 <span class="op">=</span> <span class="op">-</span>q1[..., <span class="dv">0</span>] <span class="op">*</span> q2[..., <span class="dv">3</span>] <span class="op">-</span> q1[..., <span class="dv">1</span>] <span class="op">*</span> q2[..., <span class="dv">2</span>] <span class="op">+</span> q1[..., <span class="dv">2</span>] <span class="op">*</span> q2[..., <span class="dv">1</span>] <span class="op">+</span> q1[..., <span class="dv">3</span>] <span class="op">*</span> q2[..., <span class="dv">0</span>]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.stack([o1,o2,o3,o4],axis<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safe_acos_double(t,eps <span class="op">=</span> <span class="fl">1e-16</span>):</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''numericaly stable variant of arcuscosine, uses 64bit floats for internal computation for increased accuracy'''</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.float32(np.arccos(np.clip(np.float64(t),<span class="op">-</span><span class="fl">1.0</span> <span class="op">+</span> eps, <span class="fl">1.0</span> <span class="op">-</span> eps)))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> attitudeAngleDeg(q1,q2):</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''the attitude error between to quaternions in degree'''</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> relativeQuat(q1,q2)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">2</span><span class="op">*</span>safe_acos_double(np.sqrt(q[..., <span class="dv">3</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> q[..., <span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span>))<span class="op">/</span>np.pi<span class="op">*</span><span class="dv">180</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plot the attitude error of every time step</p>
+<div id="fab5e488-a086-4271-aa8c-0e0f80084ace" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,ref_quat.shape[<span class="dv">0</span>]<span class="op">/</span>fs,ref_quat.shape[<span class="dv">0</span>])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,attitudeAngleDeg(est_quat,ref_quat))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'time [s]'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'attitude error [°]'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Text(0, 0.5, 'attitude error [°]')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="RIANN_Example_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -677,4 +680,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/daniel-om-weber/riann/tree/master/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/daniel-om-weber/riann/tree/master/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

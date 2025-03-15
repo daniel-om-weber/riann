@@ -3,12 +3,12 @@
 # %% auto 0
 __all__ = ['RIANN']
 
-# %% ../riann.ipynb 2
+# %% ../riann.ipynb 3
 import onnxruntime as rt
 import numpy as np
 import pkg_resources
 
-# %% ../riann.ipynb 3
+# %% ../riann.ipynb 4
 class RIANN:
     """
     Robust IMU-based Attitude Neural Network for orientation estimation using IMU data.

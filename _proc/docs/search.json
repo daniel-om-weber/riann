@@ -1,0 +1,97 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "RIANN (Robust IMU-based Attitude Neural Network)",
+    "section": "",
+    "text": "#hide\nfrom riann.riann import *",
+    "crumbs": [
+      "RIANN (Robust IMU-based Attitude Neural Network)"
+    ]
+  },
+  {
+    "objectID": "index.html#what-is-riann",
+    "href": "index.html#what-is-riann",
+    "title": "RIANN (Robust IMU-based Attitude Neural Network)",
+    "section": "What is RIANN?",
+    "text": "What is RIANN?\nRIANN is a lightweight neural network implementation for estimating orientation (attitude) from inertial measurement unit (IMU) data. It processes accelerometer and gyroscope readings to provide quaternion-based attitude estimation, optimized for real-time applications.",
+    "crumbs": [
+      "RIANN (Robust IMU-based Attitude Neural Network)"
+    ]
+  },
+  {
+    "objectID": "index.html#key-features",
+    "href": "index.html#key-features",
+    "title": "RIANN (Robust IMU-based Attitude Neural Network)",
+    "section": "Key Features",
+    "text": "Key Features\n\nFast and accurate quaternion-based attitude estimation\nOptimized for real-time processing with state preservation\nSupports both batch processing and step-by-step integration\nRobust against sensor noise and motion artifacts\nSimple Python API with minimal dependencies",
+    "crumbs": [
+      "RIANN (Robust IMU-based Attitude Neural Network)"
+    ]
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "RIANN (Robust IMU-based Attitude Neural Network)",
+    "section": "Installation",
+    "text": "Installation\npip install riann\n\nor from source\n\n```bash\ngit clone https://github.com/daniel-om-weber/riann.git\ncd riann\npip install -e .\n\n## Quickstart\n\n::: {#cell-10 .cell}\n``` {.python .cell-code}\nimport numpy as np\nfrom riann.riann import RIANN\n\n# Initialize RIANN\nriann = RIANN()\n\n# Prepare IMU data\nacc = np.ones((100, 3))  # Accelerometer data (100 samples, XYZ axes)\ngyr = np.zeros((100, 3)) # Gyroscope data (100 samples, XYZ axes)\nfs = 200                 # Sampling rate in Hz\n\n# Get attitude quaternions\nattitude = riann.predict(acc, gyr, fs)\nprint(f\"Output shape: {attitude.shape}\")  # (100, 4) - 100 quaternions\n\nOutput shape: (100, 4)\n\n:::",
+    "crumbs": [
+      "RIANN (Robust IMU-based Attitude Neural Network)"
+    ]
+  },
+  {
+    "objectID": "CONTRIBUTING.html",
+    "href": "CONTRIBUTING.html",
+    "title": "How to contribute",
+    "section": "",
+    "text": "Before anything else, please install the git hooks that run automatic scripts during each commit and merge to strip the notebooks of superfluous metadata (and avoid merge conflicts). After cloning the repository, run the following command inside it:\nnbdev_install_git_hooks\n\n\n\n\nEnsure the bug was not already reported by searching on GitHub under Issues.\nIf you’re unable to find an open issue addressing the problem, open a new one. Be sure to include a title and clear description, as much relevant information as possible, and a code sample or an executable test case demonstrating the expected behavior that is not occurring.\nBe sure to add the complete error messages.\n\n\n\n\nOpen a new GitHub pull request with the patch.\nEnsure that your PR includes a test that fails without your patch, and pass with it.\nEnsure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.\n\n\n\n\n\n\nKeep each PR focused. While it’s more convenient, do not combine several unrelated fixes together. Create as many branches as needing to keep each PR focused.\nDo not mix style changes/fixes with “functional” changes. It’s very difficult to review such PRs and it most likely get rejected.\nDo not add/remove vertical whitespace. Preserve the original style of the file you edit as much as you can.\nDo not turn an already submitted PR into your development playground. If after you submitted PR, you discovered that more work is needed - close the PR, do the required work and then submit a new PR. Otherwise each of your commits requires attention from maintainers of the project.\nIf, however, you submitted a PR and received a request for changes, you should proceed with commits inside that PR, so that the maintainer can see the incremental fixes and won’t need to review the whole PR again. In the exception case where you realize it’ll take many many commits to complete the requests, then it’s probably best to close the PR, do the work and then submit it again. Use common sense where you’d choose one way over another.\n\n\n\n\n\nDocs are automatically created from the notebooks in the nbs folder."
+  },
+  {
+    "objectID": "CONTRIBUTING.html#how-to-get-started",
+    "href": "CONTRIBUTING.html#how-to-get-started",
+    "title": "How to contribute",
+    "section": "",
+    "text": "Before anything else, please install the git hooks that run automatic scripts during each commit and merge to strip the notebooks of superfluous metadata (and avoid merge conflicts). After cloning the repository, run the following command inside it:\nnbdev_install_git_hooks"
+  },
+  {
+    "objectID": "CONTRIBUTING.html#did-you-find-a-bug",
+    "href": "CONTRIBUTING.html#did-you-find-a-bug",
+    "title": "How to contribute",
+    "section": "",
+    "text": "Ensure the bug was not already reported by searching on GitHub under Issues.\nIf you’re unable to find an open issue addressing the problem, open a new one. Be sure to include a title and clear description, as much relevant information as possible, and a code sample or an executable test case demonstrating the expected behavior that is not occurring.\nBe sure to add the complete error messages.\n\n\n\n\nOpen a new GitHub pull request with the patch.\nEnsure that your PR includes a test that fails without your patch, and pass with it.\nEnsure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable."
+  },
+  {
+    "objectID": "CONTRIBUTING.html#pr-submission-guidelines",
+    "href": "CONTRIBUTING.html#pr-submission-guidelines",
+    "title": "How to contribute",
+    "section": "",
+    "text": "Keep each PR focused. While it’s more convenient, do not combine several unrelated fixes together. Create as many branches as needing to keep each PR focused.\nDo not mix style changes/fixes with “functional” changes. It’s very difficult to review such PRs and it most likely get rejected.\nDo not add/remove vertical whitespace. Preserve the original style of the file you edit as much as you can.\nDo not turn an already submitted PR into your development playground. If after you submitted PR, you discovered that more work is needed - close the PR, do the required work and then submit a new PR. Otherwise each of your commits requires attention from maintainers of the project.\nIf, however, you submitted a PR and received a request for changes, you should proceed with commits inside that PR, so that the maintainer can see the incremental fixes and won’t need to review the whole PR again. In the exception case where you realize it’ll take many many commits to complete the requests, then it’s probably best to close the PR, do the work and then submit it again. Use common sense where you’d choose one way over another."
+  },
+  {
+    "objectID": "CONTRIBUTING.html#do-you-want-to-contribute-to-the-documentation",
+    "href": "CONTRIBUTING.html#do-you-want-to-contribute-to-the-documentation",
+    "title": "How to contribute",
+    "section": "",
+    "text": "Docs are automatically created from the notebooks in the nbs folder."
+  },
+  {
+    "objectID": "riann_example.html",
+    "href": "riann_example.html",
+    "title": "Application Example of RIANN on the BROAD Dataset",
+    "section": "",
+    "text": "import matplotlib.pyplot as plt\nimport numpy as np\n\nDownload the data of the BROAD dataset (https://doi.org/10.3390/data6070072). The notebook assumes, that the data_hdf5 Folder is inside of the working directory.\n\n#!wget https://depositonce.tu-berlin.de/bitstream/11303/13238/2/broad.zip\n#!unzip broad.zip\n\nLoad the reference orientation, accelerometer, gyroscope and sampling-rate values of a measurement.\n\n#!pip install h5py\nimport h5py\nwith h5py.File('data_hdf5/01_undisturbed_slow_rotation_A.hdf5','r') as f:\n    acc = f['imu_acc'][:]\n    gyr = f['imu_gyr'][:]\n    ref_quat = f['opt_quat'][:]\n    fs = f.attrs['sampling_rate']\n\nUse RIANN to estimate the attitude of the IMU\n\nfrom riann.riann import RIANN\nriann = RIANN()\nest_quat = riann.predict(acc,gyr,fs)\nest_quat.shape\n\n(56940, 4)\n\n\nDefine the attitude error metric for the final evaluation\n\ndef relativeQuat(q1, q2):\n    \"\"\"quat1*inv(quat2)\"\"\"\n\n    o1 =  q1[..., 0] * q2[..., 0] + q1[..., 1] * q2[..., 1] + q1[..., 2] * q2[..., 2] + q1[..., 3] * q2[..., 3]\n    o2 = -q1[..., 0] * q2[..., 1] + q1[..., 1] * q2[..., 0] - q1[..., 2] * q2[..., 3] + q1[..., 3] * q2[..., 2]\n    o3 = -q1[..., 0] * q2[..., 2] + q1[..., 1] * q2[..., 3] + q1[..., 2] * q2[..., 0] - q1[..., 3] * q2[..., 1]\n    o4 = -q1[..., 0] * q2[..., 3] - q1[..., 1] * q2[..., 2] + q1[..., 2] * q2[..., 1] + q1[..., 3] * q2[..., 0]\n\n    return np.stack([o1,o2,o3,o4],axis=-1)\n\ndef safe_acos_double(t,eps = 1e-16):\n    '''numericaly stable variant of arcuscosine, uses 64bit floats for internal computation for increased accuracy'''\n    return np.float32(np.arccos(np.clip(np.float64(t),-1.0 + eps, 1.0 - eps)))\n\ndef attitudeAngleDeg(q1,q2):\n    '''the attitude error between to quaternions in degree'''\n    q = relativeQuat(q1,q2)\n    \n    return 2*safe_acos_double(np.sqrt(q[..., 3]**2 + q[..., 0]**2))/np.pi*180\n\nPlot the attitude error of every time step\n\nplt.figure()\nx = np.linspace(0,ref_quat.shape[0]/fs,ref_quat.shape[0])\nplt.plot(x,attitudeAngleDeg(est_quat,ref_quat))\nplt.xlabel('time [s]')\nplt.ylabel('attitude error [°]')\n\nText(0, 0.5, 'attitude error [°]')",
+    "crumbs": [
+      "Application Example of RIANN on the BROAD Dataset"
+    ]
+  },
+  {
+    "objectID": "riann.html",
+    "href": "riann.html",
+    "title": "riann",
+    "section": "",
+    "text": "RIANN\n\n RIANN (onnx_path=None)\n\n*Robust IMU-based Attitude Neural Network for orientation estimation using IMU data.\nThis class implements efficient quaternion-based attitude estimation from accelerometer and gyroscope data using a neural network approach. The implementation is optimized for step-by-step processing in real-time applications.*\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nonnx_path\nNoneType\nNone\nPath to the RIANN onnx file. Defaults to the file provided with the package.\n\n\n\n\n# Example 1: Basic usage with batch processing\n\n# Prepare sample IMU data\nsequence_length = 100\nacc = np.ones((sequence_length, 3))  # Accelerometer data [m/s²]\ngyr = np.zeros((sequence_length, 3))  # Gyroscope data [rad/s]\nfs = 200  # Sampling rate [Hz]\n\n# Initialize RIANN\nriann = RIANN()\n\n# Process all data at once\nquaternions = riann.predict(acc, gyr, fs)\nprint(f\"Quaternions shape: {quaternions.shape}\")  # (100, 4)\n\nQuaternions shape: (100, 4)\n\n\n\n# Example 2: Real-time processing\n\n# Initialize RIANN for real-time processing\nriann = RIANN()\nriann.set_sampling_rate(100)  # 100 Hz\nriann.reset_state()\n\n# Simulated IMU data stream\ndef simulate_imu_data():\n    \"\"\"Simulate a single IMU reading\"\"\"\n    # In a real application, this would read from actual sensors\n    acc = np.array([0.0, 0.0, 9.81]) + np.random.normal(0, 0.1, 3)  # Add noise\n    gyr = np.array([0.0, 0.0, 0.0]) + np.random.normal(0, 0.01, 3)  # Add noise\n    return acc, gyr\n\n# Simulated real-time loop\norientations = []\nfor _ in range(100):  # Process 100 readings\n    # Read IMU data\n    acc, gyr = simulate_imu_data()\n    \n    # Process data to get orientation\n    quaternion = riann.predict_step(acc, gyr)\n    orientations.append(quaternion)\n    \n    # In a real application, you might use the orientation here\n    # for control, visualization, etc.\n    \n    # Simulate sensor sampling rate\n    time.sleep(0.01)  # 100 Hz\n\norientations = np.array(orientations)\nprint(f\"Collected {len(orientations)} orientation estimates\")\n\nCollected 100 orientation estimates\n\n\n\n# Example 3: Processing existing datasets\nimport h5py\n\n# Load data from file (example using the BROAD dataset as shown in RIANN_Example.ipynb)\n# In your application, adapt this to your data source\ntry:\n    with h5py.File('data_hdf5/01_undisturbed_slow_rotation_A.hdf5', 'r') as f:\n        acc = f['imu_acc'][:]  # Accelerometer data\n        gyr = f['imu_gyr'][:]  # Gyroscope data\n        ref_quat = f['opt_quat'][:]  # Reference quaternions (if available)\n        fs = f.attrs['sampling_rate']  # Sampling rate\nexcept FileNotFoundError:\n    # Create dummy data if file not found\n    sequence_length = 1000\n    acc = np.ones((sequence_length, 3))\n    gyr = np.zeros((sequence_length, 3))\n    ref_quat = None\n    fs = 200\n\n# Initialize RIANN\nriann = RIANN()\n\n# Process data\nest_quat = riann.predict(acc, gyr, fs)\n\n# If reference data is available, calculate error\nif ref_quat is not None:\n    # Helper function for attitude error calculation\n    def calculate_attitude_error(q1, q2):\n        \"\"\"Calculate attitude error in degrees between two quaternions\"\"\"\n        # Simple dot product method (accurate for small angles)\n        dot_products = np.sum(q1 * q2, axis=1)\n        dot_products = np.clip(dot_products, -1.0, 1.0)  # Ensure valid acos input\n        angles_rad = 2 * np.arccos(np.abs(dot_products))\n        return angles_rad * 180 / np.pi  # Convert to degrees\n\n    # Calculate errors\n    errors = calculate_attitude_error(est_quat, ref_quat)\n    \n    # Plot error\n    plt.figure(figsize=(10, 6))\n    plt.plot(errors)\n    plt.xlabel('Sample')\n    plt.ylabel('Attitude Error (degrees)')\n    plt.title('Orientation Estimation Error')\n    plt.grid(True)\n    plt.show()\n    \n    print(f\"Mean error: {np.mean(errors):.2f} degrees\")\n    print(f\"Max error: {np.max(errors):.2f} degrees\")\n\n\n# Example 4: Advanced usage with step-by-step processing and state tracking\n\n# Create synthetic IMU data with known motion pattern\ndef generate_synthetic_data(fs=100, duration=5):\n    \"\"\"Generate synthetic IMU data for a specific motion pattern\"\"\"\n    n_samples = int(fs * duration)\n    t = np.linspace(0, duration, n_samples)\n    \n    # Initialize arrays\n    acc = np.zeros((n_samples, 3))\n    gyr = np.zeros((n_samples, 3))\n    \n    # Create a simple rotation pattern (rotation around y-axis)\n    for i, time in enumerate(t):\n        # Gyroscope data (constant rotation around y-axis)\n        if 1.0 &lt;= time &lt;= 3.0:\n            gyr[i, 1] = 0.5  # 0.5 rad/s around y-axis\n        \n        # Accelerometer data (gravity vector rotated accordingly)\n        if time &lt; 1.0:\n            # Initial position - gravity along z\n            acc[i] = [0, 0, 9.81]\n        elif time &lt; 3.0:\n            # During rotation - rotate gravity vector\n            angle = 0.5 * (time - 1.0)  # 0.5 rad/s * time\n            acc[i] = [9.81 * np.sin(angle), 0, 9.81 * np.cos(angle)]\n        else:\n            # Final position - gravity rotated\n            acc[i] = [9.81 * np.sin(1.0), 0, 9.81 * np.cos(1.0)]\n    \n    # Add noise to make it realistic\n    acc += np.random.normal(0, 0.1, acc.shape)\n    gyr += np.random.normal(0, 0.01, gyr.shape)\n    \n    return t, acc, gyr\n\n# Generate data\nfs = 100\nt, acc, gyr = generate_synthetic_data(fs=fs)\n\n# Initialize RIANN\nriann = RIANN()\n\n# Process data in chunks to simulate real-time processing with state tracking\nchunk_size = 50  # Process 50 samples at a time\nn_chunks = len(acc) // chunk_size\n\n# Store all quaternions\nall_quaternions = []\n\nfor chunk in range(n_chunks):\n    start_idx = chunk * chunk_size\n    end_idx = start_idx + chunk_size\n    \n    # Process this chunk\n    if chunk == 0:\n        # First chunk - initialize state\n        riann.reset_state()\n    \n    # Process chunk step by step\n    for i in range(start_idx, end_idx):\n        quat = riann.predict_step(acc[i], gyr[i], fs)\n        all_quaternions.append(quat)\n    \n    # At this point in a real application, you could:\n    # 1. Use the current orientation for feedback\n    # 2. Save the current state for later resume\n    # 3. Transmit the orientation to another system\n    print(f\"Processed chunk {chunk+1}/{n_chunks}, \" +\n          f\"current orientation: w={quat[0]:.2f}, x={quat[1]:.2f}, \" +\n          f\"y={quat[2]:.2f}, z={quat[3]:.2f}\")\n\nall_quaternions = np.array(all_quaternions)\nprint(f\"Generated {len(all_quaternions)} orientation estimates\")\n\nProcessed chunk 1/10, current orientation: w=-0.79, x=0.00, y=-0.00, z=0.61\nProcessed chunk 2/10, current orientation: w=-0.81, x=-0.00, y=-0.00, z=0.59\nProcessed chunk 3/10, current orientation: w=-0.90, x=-0.04, y=-0.09, z=0.42\nProcessed chunk 4/10, current orientation: w=-0.98, x=-0.00, y=-0.16, z=0.09\nProcessed chunk 5/10, current orientation: w=-0.94, x=0.08, y=-0.18, z=-0.28\nProcessed chunk 6/10, current orientation: w=-0.87, x=0.15, y=-0.17, z=-0.44\nProcessed chunk 7/10, current orientation: w=-0.75, x=0.04, y=0.02, z=0.66\nProcessed chunk 8/10, current orientation: w=-0.56, x=0.08, y=0.10, z=0.82\nProcessed chunk 9/10, current orientation: w=-0.53, x=0.11, y=0.13, z=0.83\nProcessed chunk 10/10, current orientation: w=-0.55, x=0.15, y=0.15, z=0.81\nGenerated 500 orientation estimates",
+    "crumbs": [
+      "riann"
+    ]
+  }
+]

@@ -1,0 +1,9 @@
+project:
+  output-dir: docs
+
+website:
+  title: "riann"
+  site-url: "https://daniel-om-weber.github.io/riann/"
+  description: "A Neural Network for attitude estimation using IMU data"
+  repo-branch: master
+  repo-url: "https://github.com/daniel-om-weber/riann/tree/master/"
