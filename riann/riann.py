@@ -9,6 +9,7 @@ __all__ = ['RIANN']
 import onnxruntime as rt
 import numpy as np
 import pkg_resources
+import os
 
 # %% ../nbs/riann.ipynb 4
 class RIANN:
@@ -41,7 +42,7 @@ class RIANN:
     >>> # Process a sequence of measurements
     >>> acc_seq = np.ones((100, 3))   # 100 measurements
     >>> gyr_seq = np.zeros((100, 3))  # 100 measurements
-    >>> quaternions, states = riann.predict_sequence(acc_seq, gyr_seq, 100)
+    >>> quaternions, states = riann.predict_sequence(acc_seq, gyr_seq)
     """
 
     def __init__(self, onnx_path=None):
@@ -61,7 +62,16 @@ class RIANN:
             try:
                 onnx_path = pkg_resources.resource_string(__name__, "riann.onnx")
             except: #pkg_resources fails if the code is executed in the jupyter-notebook
-                onnx_path = 'riann/riann.onnx'
+                candidates = [
+                    'riann.onnx',
+                    'riann/riann.onnx',
+                    './riann/riann.onnx',
+                    '../riann/riann.onnx',
+                ]
+                for path in candidates:
+                    if os.path.isfile(path):
+                        onnx_path = path
+                        break
         
         self.session = rt.InferenceSession(onnx_path)
         
@@ -130,7 +140,7 @@ class RIANN:
         
         return attitude
     
-    def predict(self, acc, gyr, fs):
+    def predict(self, acc, gyr, fs=None):
         """
         Process a full sequence of IMU data at once (original behavior).
         
@@ -140,13 +150,14 @@ class RIANN:
             Acceleration data of the IMU. The axis order is x,y,z.
         gyr: numpy-array [sequence_length x 3]
             Gyroscope data of the IMU. The axis order is x,y,z.
-        fs: float
-            Sampling rate of the provided IMU data
+        fs: float, optional
+            Sampling rate of the provided IMU data. If None, uses the previously set rate.
             
         Returns
         -------
         attitude unit-quaternions [sequence_length x 4]
         """
+        if fs is None: fs = self.fs
         # For full-sequence processing, use the original implementation
         np_inp = np.concatenate([acc, gyr, np.tile(1/fs, (acc.shape[0], 1))], axis=-1).astype(np.float32)[None,...]
         
@@ -161,7 +172,7 @@ class RIANN:
         
         return outputs[0][0]
     
-    def predict_sequence(self, acc, gyr, fs, reset_state=True):
+    def predict_sequence(self, acc, gyr, fs=None, reset_state=True):
         """
         Process a sequence of IMU data step by step, preserving hidden state between steps.
         
@@ -171,8 +182,8 @@ class RIANN:
             Acceleration data of the IMU. The axis order is x,y,z.
         gyr: numpy-array [sequence_length x 3]
             Gyroscope data of the IMU. The axis order is x,y,z.
-        fs: float
-            Sampling rate of the provided IMU data
+        fs: float, optional
+            Sampling rate of the provided IMU data. If None, uses the previously set rate.
         reset_state: bool, default=True
             Whether to reset the hidden state before processing
             
@@ -184,11 +195,11 @@ class RIANN:
         """
         if reset_state:
             self.reset_state()
-        
+
         sequence_length = acc.shape[0]
         results = []
         hidden_states = []
-        self.set_sampling_rate(fs)
+        if fs is not None: self.set_sampling_rate(fs)
         
         for i in range(sequence_length):
             quat = self.predict_step(acc[i], gyr[i])
