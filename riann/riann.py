@@ -8,7 +8,7 @@ __all__ = ['RIANN']
 # %% ../nbs/riann.ipynb 3
 import onnxruntime as rt
 import numpy as np
-import pkg_resources
+import importlib.resources
 import os
 
 # %% ../nbs/riann.ipynb 4
@@ -60,8 +60,10 @@ class RIANN:
         """
         if onnx_path is None:
             try:
-                onnx_path = pkg_resources.resource_string(__name__, "riann.onnx")
-            except: #pkg_resources fails if the code is executed in the jupyter-notebook
+                # Use importlib.resources to access package resources
+                with importlib.resources.path(__name__, "riann.onnx") as model_path:
+                    onnx_path = str(model_path)
+            except: # importlib.resources fails if the code is executed in the jupyter-notebook
                 candidates = [
                     'riann.onnx',
                     'riann/riann.onnx',
@@ -118,7 +120,7 @@ class RIANN:
             
         Returns
         -------
-        attitude unit-quaternion [4]
+        attitude unit-quaternion (w,x,y,z) [4]
         """
         if acc.shape[0] != 3 or gyr.shape[0] != 3:
             raise ValueError(f"Expected acc and gyr to have shape [3], got {acc.shape} and {gyr.shape}")
@@ -155,7 +157,7 @@ class RIANN:
             
         Returns
         -------
-        attitude unit-quaternions [sequence_length x 4]
+        attitude unit-quaternions  (w,x,y,z) [sequence_length x 4]
         """
         if fs is None: fs = self.fs
         # For full-sequence processing, use the original implementation
@@ -190,7 +192,7 @@ class RIANN:
         Returns
         -------
         tuple:
-            - attitude unit-quaternions [sequence_length x 4]
+            - attitude unit-quaternions  (w,x,y,z) [sequence_length x 4]
             - hidden states [sequence_length x hidden_state_size]
         """
         if reset_state:

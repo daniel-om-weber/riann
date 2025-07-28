@@ -47,9 +47,9 @@ acc = np.ones((100, 3))  # Accelerometer data (100 samples, XYZ axes)
 gyr = np.zeros((100, 3)) # Gyroscope data (100 samples, XYZ axes)
 fs = 200                 # Sampling rate in Hz
 
-# Get attitude quaternions
+# Get attitude quaternions (w,x,y,z)
 attitude = riann.predict(acc, gyr, fs)
-print(f"Output shape: {attitude.shape}")  # (100, 4) - 100 quaternions
+print(f"Output shape: {attitude.shape}")  # (100, 4) - 100 unit quaternions
 ```
 
     Output shape: (100, 4)
