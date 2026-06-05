@@ -1,0 +1,8 @@
+# Optional: install with `uv run pre-commit install` (add pre-commit via `uv add --dev pre-commit`).
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.16
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format

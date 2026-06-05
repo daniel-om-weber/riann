@@ -1,0 +1,4 @@
+# Pair every notebook with a percent-format .py script for clean,
+# diff-friendly version control. Notebooks keep their saved outputs;
+# the .py mirror holds the code only. Run `jupytext --sync <file>` to sync.
+formats = "ipynb,py:percent"

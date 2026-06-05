@@ -1,33 +1,75 @@
 # How to contribute
 
-## How to get started
+## Getting started
 
-Before anything else, please install the git hooks that run automatic scripts during each commit and merge to strip the notebooks of superfluous metadata (and avoid merge conflicts). After cloning the repository, run the following command inside it:
+This project uses [uv](https://docs.astral.sh/uv/) for environment management.
+After cloning, create the environment and install the project with all dev
+dependencies:
+
+```bash
+uv sync
 ```
-nbdev_install_git_hooks
+
+This installs RIANN in editable mode along with the test, docs, and example
+toolchains.
+
+## Running the checks
+
+```bash
+uv run pytest                  # run the test suite
+uv run ruff check .            # lint
+uv run ruff format .           # auto-format (use --check in CI)
 ```
+
+CI runs the same `ruff check`, `ruff format --check`, and `pytest` on Python
+3.9–3.12, so please make sure they pass locally before opening a PR.
+
+## Example notebooks
+
+The notebooks in `examples/` are demonstrations, not part of the library. Each
+notebook is paired with a percent-format `.py` script via
+[jupytext](https://jupytext.readthedocs.io/) so the code diffs cleanly in
+version control. After editing either side, keep them in sync:
+
+```bash
+uv run jupytext --sync examples/<notebook>.ipynb
+```
+
+To regenerate a notebook's saved outputs:
+
+```bash
+uv run jupytext --to ipynb --execute examples/<notebook>.py
+```
+
+The `examples/` directory is excluded from Ruff (jupytext owns its layout).
+
+## Documentation
+
+Docs are built with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/)
+and [mkdocstrings](https://mkdocstrings.github.io/); the API reference is
+generated from the NumPy-style docstrings in `riann/riann.py`. Preview locally:
+
+```bash
+uv run mkdocs serve
+```
+
+The site is published to GitHub Pages automatically on pushes to `master`.
 
 ## Did you find a bug?
 
 * Ensure the bug was not already reported by searching on GitHub under Issues.
-* If you're unable to find an open issue addressing the problem, open a new one. Be sure to include a title and clear description, as much relevant information as possible, and a code sample or an executable test case demonstrating the expected behavior that is not occurring.
-* Be sure to add the complete error messages.
+* If you're unable to find an open issue addressing the problem, open a new one.
+  Include a title, a clear description, and a minimal code sample or test case
+  that demonstrates the problem.
 
-#### Did you write a patch that fixes a bug?
+## Did you write a patch that fixes a bug?
 
 * Open a new GitHub pull request with the patch.
-* Ensure that your PR includes a test that fails without your patch, and pass with it.
-* Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.
+* Ensure your PR includes a test that fails without the patch and passes with it.
+* Ensure the PR description clearly describes the problem and solution, and
+  references the relevant issue number if applicable.
 
 ## PR submission guidelines
 
-* Keep each PR focused. While it's more convenient, do not combine several unrelated fixes together. Create as many branches as needing to keep each PR focused.
-* Do not mix style changes/fixes with "functional" changes. It's very difficult to review such PRs and it most likely get rejected.
-* Do not add/remove vertical whitespace. Preserve the original style of the file you edit as much as you can.
-* Do not turn an already submitted PR into your development playground. If after you submitted PR, you discovered that more work is needed - close the PR, do the required work and then submit a new PR. Otherwise each of your commits requires attention from maintainers of the project.
-* If, however, you submitted a PR and received a request for changes, you should proceed with commits inside that PR, so that the maintainer can see the incremental fixes and won't need to review the whole PR again. In the exception case where you realize it'll take many many commits to complete the requests, then it's probably best to close the PR, do the work and then submit it again. Use common sense where you'd choose one way over another.
-
-## Do you want to contribute to the documentation?
-
-* Docs are automatically created from the notebooks in the nbs folder.
-
+* Keep each PR focused on a single concern.
+* Do not mix style-only changes with functional changes.

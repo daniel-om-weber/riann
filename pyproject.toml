@@ -1,11 +1,63 @@
 [build-system]
-requires = ["setuptools>=64.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
-name="riann"
-requires-python=">=3.9"
-dynamic = [ "keywords", "description", "version", "dependencies", "optional-dependencies", "readme", "license", "authors", "classifiers", "entry-points", "scripts", "urls"]
+name = "riann"
+description = "A Neural Network for attitude estimation using IMU data"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+keywords = ["AHRS", "Neural Network", "Attitude", "IMU"]
+authors = [{ name = "Daniel Oliver Martin Weber", email = "daniel.om.weber@gmail.com" }]
+dynamic = ["version"]
+dependencies = ["onnxruntime", "numpy"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
 
-[tool.uv]
-cache-keys = [{ file = "pyproject.toml" }, { file = "settings.ini" }, { file = "setup.py" }]
+[project.urls]
+Homepage = "https://github.com/daniel-om-weber/riann"
+Documentation = "https://daniel-om-weber.github.io/riann/"
+Repository = "https://github.com/daniel-om-weber/riann"
+
+[dependency-groups]
+test = ["pytest>=8", "ruff>=0.6"]
+examples = ["jupytext>=1.16", "matplotlib", "h5py", "ipykernel", "nbconvert"]
+docs = ["mkdocs-material>=9.5", "mkdocstrings[python]>=0.26"]
+dev = [
+    { include-group = "test" },
+    { include-group = "examples" },
+    { include-group = "docs" },
+]
+
+[tool.hatch.version]
+path = "riann/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["riann"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/riann", "/tests", "/README.md", "/LICENSE", "/pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --import-mode=importlib"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+# Example notebooks (and their jupytext-synced .py mirrors) are demos; jupytext
+# owns their layout, so keep Ruff out of them to avoid a formatter tug-of-war.
+extend-exclude = ["examples"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
