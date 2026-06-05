@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use RIANN in your research, please cite the following paper."
+title: "RIANN (Robust IMU-based Attitude Neural Network)"
+abstract: "A robust, real-time-capable neural network for IMU-based attitude estimation that outperforms classical attitude estimation filters and generalizes across motion dynamics, environments, and sampling rates."
+authors:
+  - family-names: Weber
+    given-names: Daniel
+  - family-names: Gühmann
+    given-names: Clemens
+  - family-names: Seel
+    given-names: Thomas
+repository-code: "https://github.com/daniel-om-weber/riann"
+url: "https://daniel-om-weber.github.io/riann/"
+license: Apache-2.0
+type: software
+preferred-citation:
+  type: article
+  title: "RIANN—A Robust Neural Network Outperforms Attitude Estimation Filters"
+  authors:
+    - family-names: Weber
+      given-names: Daniel
+    - family-names: Gühmann
+      given-names: Clemens
+    - family-names: Seel
+      given-names: Thomas
+  journal: "AI"
+  year: 2021
+  volume: 2
+  issue: 3
+  start: 444
+  end: 463
+  doi: "10.3390/ai2030028"
+  url: "https://www.mdpi.com/2673-2688/2/3/28"

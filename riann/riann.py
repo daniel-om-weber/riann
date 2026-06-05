@@ -5,13 +5,13 @@
 # %% auto 0
 __all__ = ['RIANN']
 
-# %% ../nbs/riann.ipynb 3
+# %% ../nbs/riann.ipynb 4
 import onnxruntime as rt
 import numpy as np
 import importlib.resources
 import os
 
-# %% ../nbs/riann.ipynb 4
+# %% ../nbs/riann.ipynb 5
 class RIANN:
     """
     Robust IMU-based Attitude Neural Network for orientation estimation using IMU data.
@@ -43,6 +43,12 @@ class RIANN:
     >>> acc_seq = np.ones((100, 3))   # 100 measurements
     >>> gyr_seq = np.zeros((100, 3))  # 100 measurements
     >>> quaternions, states = riann.predict_sequence(acc_seq, gyr_seq)
+
+    References
+    ----------
+    Weber, D.; Gühmann, C.; Seel, T. RIANN—A Robust Neural Network Outperforms
+    Attitude Estimation Filters. AI 2021, 2, 444-463.
+    https://doi.org/10.3390/ai2030028
     """
 
     def __init__(self, onnx_path=None):
