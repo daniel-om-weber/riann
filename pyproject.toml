@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "riann"
 description = "A Neural Network for attitude estimation using IMU data"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
 keywords = ["AHRS", "Neural Network", "Attitude", "IMU"]
@@ -18,10 +18,10 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Apache Software License",
     "Natural Language :: English",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 
 [project.urls]
@@ -54,7 +54,7 @@ addopts = "-ra --import-mode=importlib"
 
 [tool.ruff]
 line-length = 100
-target-version = "py39"
+target-version = "py310"
 # Example notebooks (and their jupytext-synced .py mirrors) are demos; jupytext
 # owns their layout, so keep Ruff out of them to avoid a formatter tug-of-war.
 extend-exclude = ["examples"]
